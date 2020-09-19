@@ -74,7 +74,7 @@ _Please not that to date I am the only developper for this module._
 - If the CI succeeds and the packages are well pushed, the CD is triggered.
 
 ### CI
-[![Build Status](https://dev.azure.com/baptistecabrera/Bca/_apis/build/status/Build/Save-MarkdownCommandDocumentation?repoName=bca-savemarkdowncommanddocumentation&branchName=master)](https://dev.azure.com/baptistecabrera/Bca/_build/latest?definitionId=20&repoName=bca-savemarkdowncommanddocumentation&branchName=master)
+[![Build Status](https://dev.azure.com/baptistecabrera/Bca/_apis/build/status/Build/Save-MarkdownCommandDocumentation?repoName=bca-savemarkdowncommanddocumentation&branchName=master)](https://dev.azure.com/baptistecabrera/Bca/_build/latest?definitionId=23&repoName=bca-savemarkdowncommanddocumentation&branchName=master)
 
 The CI is an Azure DevOps build pipeline that will:
 - Test the script and does code coverage with _[Pester](https://pester.dev/)_;
@@ -82,7 +82,7 @@ The CI is an Azure DevOps build pipeline that will:
 - Mirror the repository to GitHub
 
 ### CD
-[![Build Status](https://dev.azure.com/baptistecabrera/Bca/_apis/build/status/Release/Save-MarkdownCommandDocumentation?repoName=bca-savemarkdowncommanddocumentation&branchName=master)](https://dev.azure.com/baptistecabrera/Bca/_build/latest?definitionId=21&repoName=bca-savemarkdowncommanddocumentation&branchName=master)
+[![Build Status](https://dev.azure.com/baptistecabrera/Bca/_apis/build/status/Release/Save-MarkdownCommandDocumentation?repoName=bca-savemarkdowncommanddocumentation&branchName=master)](https://dev.azure.com/baptistecabrera/Bca/_build/latest?definitionId=24&repoName=bca-savemarkdowncommanddocumentation&branchName=master)
 
 The CD is an Azure DevOps release pipeline is trigerred that will:
 - In a **Prerelease** step, install both Chocolatey and Nuget packages from the private feed in a container, and run tests again. If tests are successful, the packages are promoted to `@Prerelease` view inside the private feed;
