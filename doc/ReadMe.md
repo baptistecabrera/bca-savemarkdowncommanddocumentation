@@ -1,5 +1,5 @@
 # Save-MarkdownCommandDocumentation.ps1 `0.0.1`
-Tags: `documentation` `markdown`
+Tags: `documentation` `Linux` `MacOS` `markdown` `Windows`
 
 Type: ExternalScript
 
