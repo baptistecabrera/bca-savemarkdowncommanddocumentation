@@ -10,7 +10,7 @@
     .COPYRIGHT
         (c) 2020 Bca. All rights reserved.
     .TAGS
-        markdown documentation
+        markdown documentation Linux Windows MacOS
     .LICENSEURI 
         https://github.com/baptistecabrera/bca-savemarkdowncommanddocumentation/blob/master/LICENSE
     .PROJECTURI 
