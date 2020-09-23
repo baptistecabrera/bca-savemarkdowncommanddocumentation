@@ -1,4 +1,4 @@
-# Save-MarkdownCommandDocumentation.ps1 `0.0.1`
+# Save-MarkdownCommandDocumentation.ps1 `0.0.2`
 Tags: `documentation` `Linux` `MacOS` `markdown` `Windows`
 
 Type: ExternalScript
@@ -83,7 +83,7 @@ A string containing the output folder path.
 | | |
 |:-|:-|
 |Type:|String|
-|Default value:|$PSScriptRoot|
+|Default value:|`$PSScriptRoot`|
 |Parameter sets:|FromScriptPath, FromModuleName, FromModulePath|
 |Position:|Named|
 |Required:|False|
@@ -98,7 +98,7 @@ A string containing the output layout.
 | | |
 |:-|:-|
 |Type:|String|
-|Default value:|OneFilePerCommand|
+|Default value:|`OneFilePerCommand`|
 |Parameter sets:|FromScriptPath, FromModuleName, FromModulePath|
 |Position:|Named|
 |Required:|False|
@@ -109,4 +109,4 @@ A string containing the output layout.
 If you have no comment-based help and no command manifest (ModuleManifest or ScriptFileInfo), the documentation will be limited.
 
 ## Release Notes
-- First version
+- Some format enhancements
