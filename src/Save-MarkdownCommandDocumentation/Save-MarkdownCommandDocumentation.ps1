@@ -316,14 +316,14 @@ process
         {
             "## Inputs" | Add-Content -Path $CommandFile
             $help.inputTypes.inputType.type.name | ForEach-Object {
-                "**{0}**`r`n`r`n{1}" -f $_.Split("`r`n")[0], $_.Split("`r`n")[1] | Add-Content $CommandFile
+                "`r`n**{0}**`r`n`r`n{1}" -f $_.Split("`r`n")[0], $_.Split("`r`n")[1] | Add-Content $CommandFile
             }
         }
         if ($Help.returnValues)
         {
             "## Outputs" | Add-Content -Path $CommandFile
             $help.returnValues.returnValue.type.name | ForEach-Object {
-                "**{0}**`r`n`r`n{1}" -f $_.Split("`r`n")[0], $_.Split("`r`n")[1] | Add-Content $CommandFile
+                "`r`n**{0}**`r`n`r`n{1}" -f $_.Split("`r`n")[0], $_.Split("`r`n")[1] | Add-Content $CommandFile
             }
         }
         if ($Help.alertSet)
