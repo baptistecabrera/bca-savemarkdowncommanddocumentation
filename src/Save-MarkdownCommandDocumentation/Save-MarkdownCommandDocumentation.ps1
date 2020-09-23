@@ -1,6 +1,6 @@
 <#PSScriptInfo
     .VERSION
-        0.0.1
+        0.0.2
     .GUID
         3751b890-2eed-413b-976f-e4becb9170f8
     .AUTHOR
@@ -21,7 +21,7 @@
     .REQUIREDSCRIPTS 
     .EXTERNALSCRIPTDEPENDENCIES 
     .RELEASENOTES
-        - First version
+        - Some format enhancements
 #>
 
 <#
@@ -210,7 +210,7 @@ process
                 $ParameterMd += "|:-|:-|"
                 $ParameterMd += "|Type:|{0}|" -f $CommandParameter.ParameterType.Name
                 if ($CommandParameter.Aliases) { $ParameterMd += "|Aliases|{0}|" -f ($CommandParameter.Aliases -join ", ") }
-                if ($HelpParameter.defaultValue) { $ParameterMd += "|Default value:|{0}|" -f $HelpParameter.defaultValue }
+                if ($HelpParameter.defaultValue) { $ParameterMd += '|Default value:|`{0}`|' -f $HelpParameter.defaultValue }
                 if ($CommandParameter.ParameterSets.Keys -ne "__AllParameterSets") { $ParameterMd += "|Parameter sets:|{0}|" -f ($CommandParameter.ParameterSets.Keys -join ", ") }
                 
                 $PositionMd = $false
@@ -295,20 +295,35 @@ process
                 $ParameterMd -join "`r`n" | Add-Content $CommandFile
                 $ParameterSetAttributesMd -join "`r`n" | Add-Content $CommandFile
             }
+            if ($CurrentCommand.Parameters.Keys -contains "WhatIf")
+            {
+                '### `-{0}`' -f "WhatIf" | Add-Content $CommandFile
+                "This command supports the WhatIf parameter to simulate the action before executing it." | Add-Content $CommandFile
+            }
+            if ($CurrentCommand.Parameters.Keys -contains "Confirm")
+            {
+                '### `-{0}`' -f "Confirm" | Add-Content $CommandFile
+                "This command supports the Confirm parameter to require a user confirmation before executing it." | Add-Content $CommandFile
+            }
+            if ($CurrentCommand.CmdletBinding)
+            {
+                '### `-{0}`' -f "<CommonParameters>" | Add-Content $CommandFile
+                "This command supports the common parameters: Verbose, Debug, ErrorAction, ErrorVariable, WarningAction, WarningVariable, OutBuffer, PipelineVariable, and OutVariable.`r`nFor more information, see [about_CommonParameters](https:/go.microsoft.com/fwlink/?LinkID=113216)." | Add-Content $CommandFile
+            }
         }
 
         if ($Help.inputTypes)
         {
             "## Inputs" | Add-Content -Path $CommandFile
             $help.inputTypes.inputType.type.name | ForEach-Object {
-                "**{0}**`r`n`r`n{1}" -f $_.Split("`r`n")[0], $_.Split("`r`n")[1] | Add-Content $CommandFile
+                "`r`n**{0}**`r`n`r`n{1}" -f $_.Split("`r`n")[0], $_.Split("`r`n")[1] | Add-Content $CommandFile
             }
         }
         if ($Help.returnValues)
         {
             "## Outputs" | Add-Content -Path $CommandFile
             $help.returnValues.returnValue.type.name | ForEach-Object {
-                "**{0}**`r`n`r`n{1}" -f $_.Split("`r`n")[0], $_.Split("`r`n")[1] | Add-Content $CommandFile
+                "`r`n**{0}**`r`n`r`n{1}" -f $_.Split("`r`n")[0], $_.Split("`r`n")[1] | Add-Content $CommandFile
             }
         }
         if ($Help.alertSet)
