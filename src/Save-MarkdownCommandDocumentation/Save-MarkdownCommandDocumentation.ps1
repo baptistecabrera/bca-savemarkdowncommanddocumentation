@@ -21,7 +21,7 @@
     .REQUIREDSCRIPTS 
     .EXTERNALSCRIPTDEPENDENCIES 
     .RELEASENOTES
-        - First version
+        - Some format enhancements
 #>
 
 <#
