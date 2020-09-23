@@ -210,7 +210,7 @@ process
                 $ParameterMd += "|:-|:-|"
                 $ParameterMd += "|Type:|{0}|" -f $CommandParameter.ParameterType.Name
                 if ($CommandParameter.Aliases) { $ParameterMd += "|Aliases|{0}|" -f ($CommandParameter.Aliases -join ", ") }
-                if ($HelpParameter.defaultValue) { $ParameterMd += "|Default value:|{0}|" -f $HelpParameter.defaultValue }
+                if ($HelpParameter.defaultValue) { $ParameterMd += '|Default value:|`{0}`|' -f $HelpParameter.defaultValue }
                 if ($CommandParameter.ParameterSets.Keys -ne "__AllParameterSets") { $ParameterMd += "|Parameter sets:|{0}|" -f ($CommandParameter.ParameterSets.Keys -join ", ") }
                 
                 $PositionMd = $false
@@ -294,6 +294,21 @@ process
                 }
                 $ParameterMd -join "`r`n" | Add-Content $CommandFile
                 $ParameterSetAttributesMd -join "`r`n" | Add-Content $CommandFile
+            }
+            if ($CurrentCommand.Parameters.Keys -contains "WhatIf")
+            {
+                '### `-{0}`' -f "WhatIf" | Add-Content $CommandFile
+                "This command supports the WhatIf parameter to simulate the action before executing it." | Add-Content $CommandFile
+            }
+            if ($CurrentCommand.Parameters.Keys -contains "Confirm")
+            {
+                '### `-{0}`' -f "Confirm" | Add-Content $CommandFile
+                "This command supports the Confirm parameter to require a user confirmation before executing it." | Add-Content $CommandFile
+            }
+            if ($CurrentCommand.CmdletBinding)
+            {
+                '### `-{0}`' -f "<CommonParameters>" | Add-Content $CommandFile
+                "This command supports the common parameters: Verbose, Debug, ErrorAction, ErrorVariable, WarningAction, WarningVariable, OutBuffer, PipelineVariable, and OutVariable.`r`nFor more information, see [about_CommonParameters](https:/go.microsoft.com/fwlink/?LinkID=113216)." | Add-Content $CommandFile
             }
         }
 
